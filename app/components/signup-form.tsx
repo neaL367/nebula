@@ -12,7 +12,7 @@ import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
  
-export default function SignupForm() {
+export function SignupForm() {
   const [state, action, pending] = useActionState(signup, undefined)
   const router = useRouter()
   

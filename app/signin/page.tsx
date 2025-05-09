@@ -1,4 +1,4 @@
-import SigninForm from "@/components/signin-from";
+import { SigninForm } from "@/components/signin-from";
 import Link from "next/link";
 
 export default function SignIn() {
