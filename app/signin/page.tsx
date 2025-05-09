@@ -1,7 +1,15 @@
-import { SigninForm } from "@/components/signin-from";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function SignIn() {
+import { SigninForm } from "@/app/components/signin-form";
+import { verifySession } from "@/lib/dal";
+
+export default async function SignIn() {
+  const { isAuth } = await verifySession();
+
+  if (isAuth) {
+    redirect("/");
+  }
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8">
       <div className="w-full max-w-md p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">

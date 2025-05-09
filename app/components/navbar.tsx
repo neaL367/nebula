@@ -16,7 +16,7 @@ import {
   DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu"
 
-import { SigninForm } from "@/components/signin-from"
+import { SigninForm } from "@/components/signin-form"
 import { User } from "@/lib/schema"
 
 export function Navbar({ user }: { user: User | null }) {
@@ -45,13 +45,13 @@ export function Navbar({ user }: { user: User | null }) {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
               <div className="relative h-10 w-10 overflow-hidden rounded-full">
-                <Image
-                  src="/placeholder.svg?height=40&width=40"
+                {/* <Image
+                  src=""
                   alt="Logo"
                   width={40}
                   height={40}
                   className="bg-white rounded-full"
-                />
+                /> */}
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold tracking-tight">GTAFORUMS</span>

@@ -5,8 +5,8 @@ export const SignupFormSchema = z.object({
         .string()
         .min(2, { message: 'Username must be at least 2 characters long.' })
         .max(30, { message: 'Username cannot exceed 30 characters.' })
-        .regex(/^[a-zA-Z0-9_-]+$/, { 
-            message: 'Username can only contain letters, numbers, underscores, and hyphens.' 
+        .regex(/^[a-zA-Z0-9_-]+$/, {
+            message: 'Username can only contain letters, numbers, underscores, and hyphens.'
         })
         .trim(),
     email: z
