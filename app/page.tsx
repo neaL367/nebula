@@ -1,10 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { verifySession } from "@/lib/dal";
-import { LogoutButton } from "@/components/logout-button";
 
 export default async function Home() {
-  const { isAuth } = await verifySession();
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -31,22 +28,6 @@ export default async function Home() {
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
-          {isAuth ? (
-            <LogoutButton />
-          ) : (
-            <Link
-              className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-              href="/signin"
-            >
-              Sign In
-            </Link>
-          )}
-          <Link
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto"
-            href="/signup"
-          >
-            Sign Up
-          </Link>
           <Link
             className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto"
             href="/profile"
@@ -105,5 +86,3 @@ export default async function Home() {
     </div>
   );
 }
-
-

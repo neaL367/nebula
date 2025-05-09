@@ -44,10 +44,6 @@ export default async function ProfilePage() {
                 <div>{user.id}</div>
               </div>
               <div className="grid grid-cols-2 gap-2">
-                <div className="font-medium">Password Hash:</div>
-                <div>{user.password_hash}</div>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
                 <div className="font-medium">Joined:</div>
                 <div>{user.created_at.toLocaleDateString()}</div>
               </div>
