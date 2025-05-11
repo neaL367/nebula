@@ -24,7 +24,6 @@ export default function Loading() {
           <Link href="/">
             <Button variant="outline">Back to Home</Button>
           </Link>
-          <Skeleton className="h-10 w-24" />
         </CardFooter>
       </Card>
     </div>

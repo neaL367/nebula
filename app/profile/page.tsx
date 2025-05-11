@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { logout } from '@/actions/auth'
 import { getUser } from '@/lib/dal'
 
-import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { SignOutButton } from '@/components/signout-button'
+import { Button } from '@/components/ui/button'
 
 export default async function ProfilePage() {
   const user = await getUser()
@@ -35,6 +35,10 @@ export default async function ProfilePage() {
                 <div className="font-medium">Username:</div>
                 <div>{user.username}</div>
               </div>
+              {/* <div className="grid grid-cols-2 gap-2">
+                <div className="font-medium">Role:</div>
+                <div>{user.roles}</div>
+              </div> */}
               <div className="grid grid-cols-2 gap-2">
                 <div className="font-medium">Email:</div>
                 <div>{user.email}</div>
@@ -43,10 +47,10 @@ export default async function ProfilePage() {
                 <div className="font-medium">User ID:</div>
                 <div>{user.id}</div>
               </div>
-              <div className="grid grid-cols-2 gap-2">
+              {/* <div className="grid grid-cols-2 gap-2">
                 <div className="font-medium">Password Hash:</div>
                 <div>{user.password_hash}</div>
-              </div>
+              </div> */}
               <div className="grid grid-cols-2 gap-2">
                 <div className="font-medium">Joined:</div>
                 <div>{user.created_at.toLocaleDateString()}</div>
@@ -59,16 +63,7 @@ export default async function ProfilePage() {
                 <div className="font-medium">Posts:</div>
                 <div>{user.post_count}</div>
               </div>
-              {(user.is_admin || user.is_moderator) && (
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="font-medium">Role:</div>
-                  <div>
-                    {user.is_admin ? 'Administrator' : ''}
-                    {user.is_admin && user.is_moderator ? ' & ' : ''}
-                    {user.is_moderator ? 'Moderator' : ''}
-                  </div>
-                </div>
-              )}
+              
             </>
           ) : (
             <div className="text-center py-4">
@@ -90,9 +85,7 @@ export default async function ProfilePage() {
             <Button variant="outline">Back to Home</Button>
           </Link>
           {user && (
-            <form action={logout}>
-              <Button variant="destructive" type="submit">Logout</Button>
-            </form>
+            <SignOutButton />
           )}
         </CardFooter>
       </Card>

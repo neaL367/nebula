@@ -3,9 +3,9 @@
 import { redirect } from 'next/navigation'
 import bcrypt from 'bcryptjs'
 
+import { createUser, getUserByUsername, getUserByEmail, sql } from '@/lib/db'
 import { SignupFormSchema, SigninFormSchema, FormState } from '@/lib/definitions'
 import { createSession, deleteSession } from '@/lib/session'
-import { createUser, getUserByUsername, getUserByEmail, sql } from '@/lib/db'
 
 export async function signup(state: FormState, formData: FormData) {
     // 1. Validate form fields
@@ -126,7 +126,7 @@ export async function signin(state: FormState, formData: FormData) {
 }
 
 
-export async function logout() {
+export async function signout() {
     await deleteSession()
     redirect('/')
 }
