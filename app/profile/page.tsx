@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { getUser } from '@/lib/dal'
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { SignOutButton } from '@/components/signout-button'
 import { Button } from '@/components/ui/button'
+import { SignoutButton } from '@/components/signout-button'
 
 export default async function ProfilePage() {
   const user = await getUser()
@@ -85,7 +85,7 @@ export default async function ProfilePage() {
             <Button variant="outline">Back to Home</Button>
           </Link>
           {user && (
-            <SignOutButton />
+            <SignoutButton />
           )}
         </CardFooter>
       </Card>

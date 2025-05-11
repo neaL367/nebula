@@ -1,10 +1,9 @@
-// components/SignOutButton.tsx
 "use client";
 
 import { signout } from "@/actions/auth"; 
 import { Button } from "./ui/button";
 
-export function SignOutButton() {
+export function SignoutButton() {
   const handleSignout = async () => {
     await signout();
   };
