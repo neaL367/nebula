@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 
 export function SignoutButton() {
   const handlesignout = async () => {
+    "use server"
     await signout();
   };
 
