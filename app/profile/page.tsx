@@ -5,7 +5,7 @@ import { getUser } from '@/lib/dal'
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { SignoutButton } from '../components/Signout-button'
+import { SignoutButton } from '@/components/signout-button'
 
 export default async function ProfilePage() {
   const user = await getUser()
