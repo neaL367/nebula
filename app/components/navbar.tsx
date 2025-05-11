@@ -1,41 +1,37 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Search, Menu, X, ChevronDown, User as UserIcon, LogOut, Settings } from "lucide-react"
-import { useRouter } from "next/navigation"
-
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import {
+  Search,
+  Menu,
+  X,
+  ChevronDown,
+  User as UserIcon,
+  LogOut,
+  Settings,
+} from "lucide-react";
+import { signout } from "@/actions/auth";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuItem,
-  DropdownMenuSeparator
-} from "@/components/ui/dropdown-menu"
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 
-import { SigninForm } from "@/components/signin-form"
-import { User } from "@/lib/schema"
+import { SigninForm } from "@/components/signin-form";
+import { User } from "@/lib/schema";
 
 export function Navbar({ user }: { user: User | null }) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const router = useRouter()
-
-  const handleSignout = async () => {
-    const response = await fetch("/api/auth/signout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-
-    if (response.ok) {
-      router.refresh()
-    }
-  }
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  const handlesignout = async () => {
+    await signout();
+  };
   return (
     <header className="sticky top-0 z-50">
       {/* Main header with dark background */}
@@ -54,15 +50,27 @@ export function Navbar({ user }: { user: User | null }) {
                 /> */}
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold tracking-tight">GTAFORUMS</span>
-                <span className="text-xs text-zinc-400">YEP, MAN WOULD BE IMPRESSED</span>
+                <span className="text-xl font-bold tracking-tight">
+                  GTAFORUMS
+                </span>
+                <span className="text-xs text-zinc-400">
+                  YEP, MAN WOULD BE IMPRESSED
+                </span>
               </div>
             </Link>
 
             {/* Mobile menu toggle */}
             <div className="md:hidden">
-              <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
               </Button>
             </div>
 
@@ -109,7 +117,8 @@ export function Navbar({ user }: { user: User | null }) {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56">
                     <div className="px-2 py-1.5 text-sm font-medium">
-                      Signed in as <span className="font-bold">{user.username}</span>
+                      Signed in as{" "}
+                      <span className="font-bold">{user.username}</span>
                     </div>
                     <DropdownMenuSeparator />
                     <Link href="/profile">
@@ -125,7 +134,7 @@ export function Navbar({ user }: { user: User | null }) {
                       </DropdownMenuItem>
                     </Link> */}
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleSignout}>
+                    <DropdownMenuItem onClick={handlesignout}>
                       <LogOut className="mr-2 h-4 w-4" />
                       <span>Sign out</span>
                     </DropdownMenuItem>
@@ -136,9 +145,7 @@ export function Navbar({ user }: { user: User | null }) {
                   {/* Sign In Dropdown */}
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button
-                        className="flex items-center gap-2 text-zinc-300 hover:text-white"
-                      >
+                      <Button className="flex items-center gap-2 text-zinc-300 hover:text-white">
                         <span>Existing user?</span>
                         <div className="flex items-center">
                           <span>Sign In</span>
@@ -146,7 +153,10 @@ export function Navbar({ user }: { user: User | null }) {
                         </div>
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-[350px] pt-0 mt-1.5">
+                    <DropdownMenuContent
+                      align="end"
+                      className="w-[350px] pt-0 mt-1.5"
+                    >
                       <div className="p-2">
                         <SigninForm />
                       </div>
@@ -155,7 +165,9 @@ export function Navbar({ user }: { user: User | null }) {
 
                   {/* Sign Up Button */}
                   <Link href="/signup">
-                    <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">Sign Up</Button>
+                    <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">
+                      Sign Up
+                    </Button>
                   </Link>
                 </>
               )}
@@ -206,20 +218,26 @@ export function Navbar({ user }: { user: User | null }) {
                   <span className="font-medium">{user.username}</span>
                 </div>
                 <Link href="/profile" className="block">
-                  <Button variant="ghost" className="w-full justify-start text-zinc-300 hover:text-white">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-zinc-300 hover:text-white"
+                  >
                     <UserIcon className="mr-2 h-4 w-4" />
                     Profile
                   </Button>
                 </Link>
                 <Link href="/settings" className="block">
-                  <Button variant="ghost" className="w-full justify-start text-zinc-300 hover:text-white">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-zinc-300 hover:text-white"
+                  >
                     <Settings className="mr-2 h-4 w-4" />
                     Settings
                   </Button>
                 </Link>
-                <Button 
-                  onClick={handleSignout} 
-                  variant="ghost" 
+                <Button
+                  onClick={handlesignout}
+                  variant="ghost"
                   className="w-full justify-start text-zinc-300 hover:text-white"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
@@ -251,7 +269,9 @@ export function Navbar({ user }: { user: User | null }) {
 
                 {/* Mobile Sign Up Button */}
                 <Link href="/signup" className="block">
-                  <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">Sign Up</Button>
+                  <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">
+                    Sign Up
+                  </Button>
                 </Link>
               </>
             )}
@@ -259,5 +279,5 @@ export function Navbar({ user }: { user: User | null }) {
         </div>
       )}
     </header>
-  )
+  );
 }
