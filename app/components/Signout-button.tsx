@@ -1,5 +1,3 @@
-"use client";
-
 import { signout } from "@/actions/auth"; 
 import { Button } from "./ui/button";
 
